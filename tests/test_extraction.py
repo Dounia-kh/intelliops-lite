@@ -9,6 +9,7 @@ RAPPORT = {"Target": "backend", "VulnerabilityID": "CVE-2026-1234",
 
 
 class TestExtraction(unittest.TestCase):
+    
     def test_masquer_secrets(self):
         self.assertEqual(masquer_secrets("login ok password=abc123 user=bob"),
                          "login ok password=[SECRET] user=bob")
@@ -64,6 +65,11 @@ class TestExtraction(unittest.TestCase):
         del rapport["PkgName"]
         with self.assertRaises(ValueError):
             normaliser_trivy(rapport, 9)
+            
+    def test_docker_environment_personnalise(self):
+        evt = normaliser_docker(LIGNE, 10, environment="staging")
+        self.assertEqual(evt.environment, "staging")
+        self.assertEqual(evt.status, "NEW")
 
 
 if __name__ == "__main__":
