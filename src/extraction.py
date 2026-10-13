@@ -53,3 +53,7 @@ def normaliser_trivy(rapport: dict, numero: int,
         message=(f"Vulnérabilité {rapport['VulnerabilityID']} détectée dans "
                  f"{rapport['PkgName']} {rapport['InstalledVersion']}"),
     )
+ 
+def masquer_secrets(texte: str) -> str:
+    """Remplace la valeur des secrets (password, token...) par [SECRET]."""
+    return _SECRET_RE.sub(lambda m: m.group(1) + m.group(2) + "[SECRET]", texte)    
