@@ -5,3 +5,6 @@ Notification) qui échangent via un contrat commun (src/contrat.py).
 ## Équipe
 
 - Selma : agent Analyse
+
+   - Dounia ... : agent Extraction (A)
+
