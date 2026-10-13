@@ -21,7 +21,7 @@ def classer(evt: Evenement) -> str:
     if evt.event_type == "CONTAINER_RESTART":
         trouve = re.search(r"restarts=(\d+)", evt.message)
         nombre = int(trouve.group(1)) if trouve else 0
-        if nombre >= 10:
+        if nombre > 100:
             return "CRITICAL"
         return "MEDIUM"
     if evt.event_type == "VULNERABILITY" and evt.severity == "CRITICAL":
